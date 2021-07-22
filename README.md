@@ -22,7 +22,7 @@ Cloudflare origin certificates are used to secure the communications between Clo
 
 ### Built with
 
-- [kibana](https://github.com/cloudflare/origin-ca-issuer/tree/trunk/deploy/charts/origin-ca-issuer) helm chart
+- [cloudflare/origin-ca-issuer](https://github.com/cloudflare/origin-ca-issuer/tree/trunk/deploy/charts/origin-ca-issuer) helm chart
 
 ### Deployment
 
