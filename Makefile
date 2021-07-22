@@ -33,7 +33,7 @@ init:
 	helm3 repo add elastic https://helm.elastic.co
 	helm3 repo update
 
-dev: lint init
+dev: lint init config-secrets
 ifndef CI
 	$(error Please commit and push, this is intended to be run in a CI environment)
 endif
@@ -48,8 +48,9 @@ endif
 		--values env/dev/values.yaml \
 		$(CHART_NAME)
 	$(MAKE) history
+	kubectl apply -f origin-issuer.yaml
 
-prod: lint init
+prod: lint init config-secrets
 ifndef CI
 	$(error Please commit and push, this is intended to be run in a CI environment)
 endif
@@ -64,6 +65,7 @@ endif
 		--values env/prod/values.yaml \
 		$(CHART_NAME)
 	$(MAKE) history
+	kubectl apply -f origin-issuer.yaml
 
 # Helm status
 status:
@@ -87,3 +89,7 @@ uninstall:
 destroy:
 	@echo -n "You are about to ** DELETE DATA **, enter y if your sure ? [y/N] " && read ans && [ $${ans:-N} = y ]
 	helm3 uninstall $(RELEASE) -n $(NAMESPACE)
+
+config-secrets:
+	@echo -n "Replacing variables in secret with environment variables"
+	perl -p -i template.pl < ./origin-issuer.yaml.tpl > origin-issuer.yaml
