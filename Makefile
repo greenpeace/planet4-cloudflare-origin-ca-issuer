@@ -22,8 +22,8 @@ PROD_ZONE ?= us-central1-a
 lint: lint-yaml lint-ci
 
 lint-yaml:
-		@find . -type f -name '*.yml' | xargs yamllint
-		@find . -type f -name '*.yaml' | xargs yamllint
+		@find . -path ./origin-ca-issuer -prune -false -o -type f -name '*.yml'  | xargs yamllint
+		@find . -path ./origin-ca-issuer -prune -false -o -type f -name '*.yaml' | xargs yamllint
 
 lint-ci:
 		@circleci config validate
