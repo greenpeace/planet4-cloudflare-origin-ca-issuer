@@ -56,7 +56,7 @@ ifndef CI
 endif
 	gcloud config set project $(PROD_PROJECT)
 	gcloud container clusters get-credentials $(PROD_PROJECT) --zone $(PROD_ZONE) --project $(PROD_PROJECT)
-	-kubectl label namespace $(NAMESPACE)
+	-kubectl create namespace $(NAMESPACE)
 	kubectl apply -f https://raw.githubusercontent.com/cloudflare/origin-ca-issuer/$(CRD_VERSION)/deploy/crds/cert-manager.k8s.cloudflare.com_originissuers.yaml
 	helm3 upgrade --install --wait $(RELEASE) \
 		--namespace=$(NAMESPACE) \
