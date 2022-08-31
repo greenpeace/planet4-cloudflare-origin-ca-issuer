@@ -50,4 +50,4 @@ This repository is deployed via [CircleCI](https://circleci.com/gh/greenpeace/pl
 
 ### Contributing
 
- If your interested in contributing to P4 Infrastructure code please check our our community page [here](https://github.com/greenpeace/planet4).
+ If your interested in contributing to P4 Infrastructure code please check our our community page [here](https://github.com/greenpeace/planet4). 
