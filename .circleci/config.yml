@@ -5,7 +5,7 @@ docker_auth: &docker_auth
 
 defaults: &defaults
   docker:
-    - image: greenpeaceinternational/circleci-base:latest
+    - image: docker.io/greenpeaceinternational/circleci-base:latest
       auth:
         <<: *docker_auth
 
